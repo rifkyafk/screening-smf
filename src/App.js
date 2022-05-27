@@ -3,6 +3,7 @@ import './App.css';
 
 function App() {
   const [sumRiskLevel, setSumRiskLevel] = useState(0)
+  const [tab, setTab] = useState(0)
   const [riskVal] = useState({
     levelriskKb: 10,
     levelriskBs: 10,
@@ -44,99 +45,115 @@ function App() {
   }
   return (
     <div className="App container">
-      <h1>Evaluasi SMF</h1>
-      <form>
-        <div className="form-group">
-          <label >Kandungan bahan aktif</label>
-          <select onChange={(e) => onSelectChange(e, 'levelriskKb')} className="form-control">
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label >Bentuk sediaan</label>
-          <select onChange={(e) => onSelectChange(e, 'levelriskBs')} className="form-control" >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label >Risiko kontaminasi</label>
-          <select onChange={(e) => onSelectChange(e, 'levelriskContamination')} className="form-control" >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label >Kegiatan produksi</label>
-          <select onChange={(e) => onSelectChange(e, 'levelriskKp')} className="form-control" >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label >Afiliasi industri</label>
-          <select onChange={(e) => onSelectChange(e, 'levelriskAp')} className="form-control" >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label >Riwayat inspeksi</label>
-          <select onChange={(e) => onSelectChange(e, 'levelriskInspection')} className="form-control" >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label >Laporan inspeksi</label>
-          <select onChange={(e) => onSelectChange(e, 'levelriskReport')} className="form-control" >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label >Hasil inspeksi terakhir</label>
-          <select onChange={(e) => onSelectChange(e, 'levelriskResInspection')} className="form-control" >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Distribusi obat</label>
-          <select onChange={(e) => onSelectChange(e, 'levelrisDist')} className="form-control" >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-        <div className="form-group"><button onClick={() => onSubmit(riskLevel)} type="button" className="btn btn-primary">Submit</button></div>
-      </form>
-      {sumRiskLevel > 0 && (
-        <div class="alert alert-info" role="alert">
-          <h2>Total Bobot Resiko: {sumRiskLevel}</h2>
-          <p>Hasil Analisis Resiko: {analysisRisk(sumRiskLevel)} </p>
-        </div>
-      )}
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" onClick={() => setTab(0)}>
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Evaluasi SMF</a>
+        </li>
+        <li class="nav-item" onClick={() => setTab(1)}>
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">.....</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        {tab === 0 && (
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h1>Evaluasi SMF</h1>
+            <form>
+              <div className="form-group">
+                <label >Kandungan bahan aktif</label>
+                <select onChange={(e) => onSelectChange(e, 'levelriskKb')} className="form-control">
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label >Bentuk sediaan</label>
+                <select onChange={(e) => onSelectChange(e, 'levelriskBs')} className="form-control" >
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label >Risiko kontaminasi</label>
+                <select onChange={(e) => onSelectChange(e, 'levelriskContamination')} className="form-control" >
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label >Kegiatan produksi</label>
+                <select onChange={(e) => onSelectChange(e, 'levelriskKp')} className="form-control" >
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label >Afiliasi industri</label>
+                <select onChange={(e) => onSelectChange(e, 'levelriskAp')} className="form-control" >
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label >Riwayat inspeksi</label>
+                <select onChange={(e) => onSelectChange(e, 'levelriskInspection')} className="form-control" >
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label >Laporan inspeksi</label>
+                <select onChange={(e) => onSelectChange(e, 'levelriskReport')} className="form-control" >
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label >Hasil inspeksi terakhir</label>
+                <select onChange={(e) => onSelectChange(e, 'levelriskResInspection')} className="form-control" >
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Distribusi obat</label>
+                <select onChange={(e) => onSelectChange(e, 'levelrisDist')} className="form-control" >
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div className="form-group"><button onClick={() => onSubmit(riskLevel)} type="button" className="btn btn-primary">Submit</button></div>
+            </form>
+            {sumRiskLevel > 0 && (
+              <div class="alert alert-info" role="alert">
+                <h2>Total Bobot Resiko: {sumRiskLevel}</h2>
+                <p>Hasil Analisis Resiko: {analysisRisk(sumRiskLevel)} </p>
+              </div>
+            )}
 
-
+          </div>
+        )}
+        {tab === 1 && (
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        )}
+      </div>
     </div>
   );
 }
