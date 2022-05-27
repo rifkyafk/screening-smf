@@ -47,10 +47,10 @@ function App() {
     <div className="App container">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" onClick={() => setTab(0)}>
-          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Evaluasi SMF</a>
+          <a class="nav-link active" aria-selected={tab === 0 ? true : false}>Evaluasi SMF</a>
         </li>
         <li class="nav-item" onClick={() => setTab(1)}>
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">.....</a>
+          <a class="nav-link" aria-selected={tab === 1 ? true : false}>.....</a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
